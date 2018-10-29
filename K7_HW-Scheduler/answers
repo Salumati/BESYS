@@ -1,0 +1,57 @@
+1. Berechne die response time und die turnaround time fuer 3 Jobs der laenge 200 im falle von SJF und FIFO
+	SJF:	  TournA. response wait
+		Job1:  200		0		0
+		Job2:  400		200		200
+		Job3:  600		400		400
+		Avrge: 400		200		200
+	FIFO:
+		Job1:  200		0		0
+		Job2:  400		200		200
+		Job3:  600		400		400
+		Avrge: 400		200		200
+
+2. Tue das selbe mit den laengen 100, 200 und 300.
+		SJF:  TournA. response wait
+		Job1:  100		0		0
+		Job2:  300		100		100
+		Job3:  600		300		300
+		Avrge: 333		133		133
+	FIFO: = wie SJF wenn -j 100,200,300 anggegeben wurde, daher hier 				mit j-300,200,100 gerechnet
+		Job1:  300		0		0
+		Job2:  500		300		300
+		Job3:  600		500		500
+		Avrge: 466		266		266
+
+3. Das selbe nochmal aber mit RR
+			  TournA. response wait
+	RR: (mit Quantum = 10)
+		Job1:  600		0		300
+		Job2:  500		10		300
+		Job3:  300		20		200
+		Avrge: 466		10		266
+RR: (mit Quantum = 1)
+		Job1:  600		0		300
+		Job2:  500		1		300
+		Job3:  300		2		200
+		Avrge: 466		1		266
+
+4. Fuer welche Workloads liefert SJF die selbe Tournaround Zeit wie FIFO
+	Wenn alle Jobs im Workload gleich lang sind.
+	Wenn alle Jobs zufaellig nach laenge sortiert ankommen.
+
+5. Fuer welche Workloads und Quantumlaenge hat SJF die selbe response Zeit wie RR?
+	Wenn alle Jobs gleichlang sind und die Quantumlaenge = Joblaenge
+
+6. Was geschieht mit der Responsezeit im SJF wenn sich die Joblaenge erhoet? Kannst du einen Trend erkennen?
+	mit groeserer Joblaenge wird auch die Responsezeit schlechter
+	Demonstration: vergleiche Job:(100, 200, 300) und Job:(200,200,200)
+					Insegesamt ist das Workload gleich lang, aber die 						Resopnsezeit ist schlechter
+
+7. Was passiert mit den Responsezeit im RR wenn sich die Quantumlaenge erhoet? Kannst du eine Formel fuer das Worst Case bei N jobs angeben
+	Je laenger das Quantum desto schlechter die Responsezeit.
+	Schlimmster fall: alle kommen gleichzeitig an (Ta = 0), sind gleich lang und das Quantum (Q) ist so lang wie die Jobs:
+		Response Time (Tr) = 0*Q + 1*Q + 2*Q ... N * Q 
+		Tr(N) = N! * Q
+		DurchSchnitt(Tr) = (N! * Q) / N
+		Durchschnitt(Tr) = (N-1)! * Q
+	
